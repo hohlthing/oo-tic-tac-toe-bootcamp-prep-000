@@ -82,4 +82,14 @@ class TicTacToe
       board[win_combo[0]]
     end
   end
+  def play(board)
+    until over?(board)
+      turn(board)
+    end
+    if winner(board)
+      puts "Congratulations #{winner(board)}!"
+    else
+      puts "Cat's Game!"
+    end
+  end
 end
