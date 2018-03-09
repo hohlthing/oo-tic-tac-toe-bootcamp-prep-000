@@ -63,4 +63,23 @@ class TicTacToe
     end
     return nil
   end
+  def full?(board)    
+    board.all?{ |x| x == "X" || x == "O" }
+  end
+
+  def draw?(board)
+    !won?(board) && full?(board)
+  end
+
+  def over?(board)
+    won?(board) || draw?(board) || full?(board)
+  end
+
+  def winner(board)
+    win_combo = won?(board)
+  
+    if(win_combo)
+      board[win_combo[0]]
+    end
+  end
 end
