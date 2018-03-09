@@ -2,7 +2,8 @@ class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
   end
-  def WIN_COMBINATIONS = [
+  
+  WIN_COMBINATIONS = [
     [0,1,2], # Top row
     [3,4,5], # Middle row
     [6,7,8], # Bottom row
@@ -12,7 +13,7 @@ class TicTacToe
     [0,4,8], # Left diagonal
     [2,4,6]  # Right diagonal
     ]
-  end
+  
   def display_board(board)
     puts " #{board[0]} | #{board[1]} | #{board[2]} "
     puts "-----------"
@@ -20,18 +21,23 @@ class TicTacToe
     puts "-----------"
     puts " #{board[6]} | #{board[7]} | #{board[8]} "
   end
+  
   def input_to_index(user_input)
     user_input.to_i - 1
   end
+  
   def move(board, index, current_player)
     board[index] = current_player
   end
+  
   def position_taken?(board, location)
     board[location] != " " && board[location] != ""
   end
+  
   def valid_move?(board, index)
-   index.between?(0,8) && !position_taken?(board, index)
+    index.between?(0,8) && !position_taken?(board, index)
   end
+  
   def turn(board)
     puts "Please enter 1-9:"
     input = gets.strip
@@ -43,6 +49,7 @@ class TicTacToe
       turn(board)
     end
   end
+  
   def turn_count(board)
     count = 0
     board.each do |space|
@@ -52,6 +59,7 @@ class TicTacToe
     end
     count
   end
+  
   def won?(board)
     WIN_COMBINATIONS.each do |win_combo|
       if board[win_combo[0]] == "X" && board[win_combo[0]] == board[win_combo[1]] && board[win_combo[1]] == board[win_combo[2]] 
@@ -63,6 +71,7 @@ class TicTacToe
     end
     return nil
   end
+  
   def full?(board)    
     board.all?{ |x| x == "X" || x == "O" }
   end
@@ -82,6 +91,7 @@ class TicTacToe
       board[win_combo[0]]
     end
   end
+  
   def play(board)
     until over?(board)
       turn(board)
